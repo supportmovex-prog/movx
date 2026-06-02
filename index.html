@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MoveX Transportation & Logistics – Reliable container and goods transport from Jaipur to Mundra, Kandla, and Nhava Sheva. Trusted by exporters and manufacturers across Rajasthan.">
+<meta name="keywords" content="logistics Jaipur, container transport, goods transport, Mundra port, Kandla port, Nhava Sheva, factory logistics, MoveX">
+<title>MoveX Transportation & Logistics | Jaipur to Major Indian Ports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="logo" href="#" onclick="showPage('home')">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M1 3h15v11H1zm20 5-4-3v13l4-3V8zm-7 7H1v3l3 3h10v-6zm-9 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+        </div>
+        <span class="logo-text">Move<span>X</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a>
+        <a href="#" onclick="showPage('about')" id="nav-about">About</a>
+        <a href="#" onclick="showPage('services')" id="nav-services">Services</a>
+        <a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a>
+        <div class="user-pill" id="user-pill">
+          <div class="user-avatar" id="user-avatar-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="8" r="4" fill="currentColor"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span id="username" class="user-name-text"></span>
+        </div>
+        <button class="logout-btn" onclick="logout()">
+          <svg class="logout-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+      <div class="nav-cta">
+        <a href="tel:+918529890535" class="nav-call">📞 +91 8529890535</a>
+        <a href="#" onclick="showPage('booking')" class="btn btn-primary" style="padding:10px 20px;font-size:0.88rem;">Book Now</a>
+      </div>
+      <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#" onclick="showPage('home');toggleMobile()">Home</a>
+    <a href="#" onclick="showPage('about');toggleMobile()">About Us</a>
+    <a href="#" onclick="showPage('services');toggleMobile()">Services</a>
+    <a href="#" onclick="showPage('contact');toggleMobile()">Contact</a>
+    <a href="#" onclick="showPage('booking');toggleMobile()" class="btn btn-primary">Book Transport Now</a>
+  </div>
+</nav>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section id="home-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-badge">🟠 Rajasthan's #1 Logistics Partner</div>
+          <h1 class="hero-h1">Reliable Transport<br>for Your <span class="accent">Business</span></h1>
+          <p class="hero-sub">Safe, on-time container & goods transport from Jaipur to Mundra, Kandla, and Nhava Sheva — serving exporters, factories & manufacturers across Rajasthan.</p>
+          <div class="hero-btns">
+            <a href="#" onclick="showPage('booking')" class="btn btn-primary" style="font-size:1rem;padding:15px 30px;">🚛 Book Transport Now</a>
+            <a href="tel:+918529890535" class="btn btn-outline" style="font-size:1rem;padding:15px 30px;">📞 Call Now</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><div class="stat-num">50<span>+</span></div><div class="stat-label">Clients Served</div></div>
+            <div class="stat"><div class="stat-num">99<span>%</span></div><div class="stat-label">On-Time Rate</div></div>
+            <div class="stat"><div class="stat-num">1<span>+</span></div><div class="stat-label">Years Experience</div></div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-visual">
+            <div class="hero-card-main">
+              <div class="route-viz">
+                <div class="route-city"><div class="route-city-name">Jaipur</div><div class="route-city-label">Origin</div></div>
+                <div class="route-line">
+                  <div class="route-dot"></div>
+                  <div class="route-dash"></div>
+                  <div class="route-truck">🚛</div>
+                  <div class="route-dash"></div>
+                  <div class="route-dot"></div>
+                </div>
+                <div class="route-city"><div class="route-city-name">Port</div><div class="route-city-label">Destination</div></div>
+              </div>
+              <div class="cargo-info">
+                <div class="cargo-item"><div class="cargo-item-label">Container</div><div class="cargo-item-val">20' / 40'</div></div>
+                <div class="cargo-item"><div class="cargo-item-label">Transit</div><div class="cargo-item-val">24–48 hrs</div></div>
+                <div class="cargo-item"><div class="cargo-item-label">Tracking</div><div class="cargo-item-val">Real-Time</div></div>
+                <div class="cargo-item"><div class="cargo-item-label">Insurance</div><div class="cargo-item-val">Full Cover</div></div>
+              </div>
+              <div class="status-badge"><span class="status-dot"></span> Fleet Ready & Available</div>
+              <div class="hero-ports">
+                <span class="port-chip">Mundra</span>
+                <span class="port-chip">Kandla</span>
+                <span class="port-chip">Nhava Sheva</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="marquee-icon">🚛</span> Container Transport</div>
+      <div class="marquee-item"><span class="marquee-icon">⚓</span> Mundra Port</div>
+      <div class="marquee-item"><span class="marquee-icon">⚓</span> Kandla Port</div>
+      <div class="marquee-item"><span class="marquee-icon">⚓</span> Nhava Sheva</div>
+      <div class="marquee-item"><span class="marquee-icon">🏭</span> Factory Logistics</div>
+      <div class="marquee-item"><span class="marquee-icon">📦</span> Goods Transport</div>
+      <div class="marquee-item"><span class="marquee-icon">🔧</span> Machinery Shifting</div>
+      <div class="marquee-item"><span class="marquee-icon">📋</span> Contract Transport</div>
+      <!-- duplicate for seamless loop -->
+      <div class="marquee-item"><span class="marquee-icon">🚛</span> Container Transport</div>
+      <div class="marquee-item"><span class="marquee-icon">⚓</span> Mundra Port</div>
+      <div class="marquee-item"><span class="marquee-icon">⚓</span> Kandla Port</div>
+      <div class="marquee-item"><span class="marquee-icon">⚓</span> Nhava Sheva</div>
+      <div class="marquee-item"><span class="marquee-icon">🏭</span> Factory Logistics</div>
+      <div class="marquee-item"><span class="marquee-icon">📦</span> Goods Transport</div>
+      <div class="marquee-item"><span class="marquee-icon">🔧</span> Machinery Shifting</div>
+      <div class="marquee-item"><span class="marquee-icon">📋</span> Contract Transport</div>
+    </div>
+  </div>
+
+  <!-- TRUST STATS -->
+  <section class="section trust-section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:48px;">
+        <div class="tag">Why Businesses Trust Us</div>
+        <h2 class="section-title">Numbers That <span>Speak</span> for Themselves</h2>
+        <p class="section-sub">Over 1 year of moving cargo across India, we've built a reputation that factories and exporters rely on.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <div class="trust-icon">🚛</div>
+          <div class="trust-num">50<span>+</span></div>
+          <div class="trust-label">Trips Completed</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">🏭</div>
+          <div class="trust-num">50<span>+</span></div>
+          <div class="trust-label">Business Clients</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">⏰</div>
+          <div class="trust-num">99<span>%</span></div>
+          <div class="trust-label">On-Time Delivery</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">⚓</div>
+          <div class="trust-num">3</div>
+          <div class="trust-label">Major Ports Served</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section class="section services-section">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <div class="tag">Our Services</div>
+          <h2 class="section-title">Comprehensive <span>Logistics</span> Solutions</h2>
+        </div>
+        <div>
+          <p class="section-sub">From container transport to full factory logistics, we handle every aspect of your supply chain with precision and care.</p>
+          <a href="#" onclick="showPage('services')" style="display:inline-block;margin-top:20px;" class="btn btn-navy">View All Services →</a>
+        </div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" onclick="showPage('services')">
+          <span class="service-card-arrow">↗</span>
+          <div class="service-card-icon">🚢</div>
+          <h3 class="service-card-title">Port Container Transport</h3>
+          <p class="service-card-desc">Reliable container transport from Jaipur to all major western India ports. We handle 20' and 40' containers for exporters and importers.</p>
+          <div class="service-card-ports">
+            <span class="port-tag">Mundra</span>
+            <span class="port-tag">Kandla</span>
+            <span class="port-tag">Nhava Sheva</span>
+          </div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <span class="service-card-arrow">↗</span>
+          <div class="service-card-icon">🏭</div>
+          <h3 class="service-card-title">Factory Goods Transport</h3>
+          <p class="service-card-desc">Full-scale factory logistics — raw material inbound, finished goods outbound. Scheduled pickups and drops tailored to your production cycle.</p>
+          <div class="service-card-ports">
+            <span class="port-tag">Raw Materials</span>
+            <span class="port-tag">Finished Goods</span>
+          </div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <span class="service-card-arrow">↗</span>
+          <div class="service-card-icon">⚙️</div>
+          <h3 class="service-card-title">Machinery Shifting</h3>
+          <p class="service-card-desc">Safe transportation of heavy industrial machinery and equipment with specialized vehicles, skilled operators, and insurance cover.</p>
+          <div class="service-card-ports">
+            <span class="port-tag">Heavy Load</span>
+            <span class="port-tag">Industrial</span>
+          </div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <span class="service-card-arrow">↗</span>
+          <div class="service-card-icon">📋</div>
+          <h3 class="service-card-title">Contract Transport</h3>
+          <p class="service-card-desc">Monthly or annual dedicated transport contracts for businesses needing regular, scheduled logistics with predictable costs and priority service.</p>
+          <div class="service-card-ports">
+            <span class="port-tag">Monthly</span>
+            <span class="port-tag">Annual</span>
+          </div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <span class="service-card-arrow">↗</span>
+          <div class="service-card-icon">🏗️</div>
+          <h3 class="service-card-title">Warehouse Movement</h3>
+          <p class="service-card-desc">Efficient goods movement between warehouses, distribution centers, and retail hubs. We handle loading, transport, and unloading end-to-end.</p>
+          <div class="service-card-ports">
+            <span class="port-tag">Storage</span>
+            <span class="port-tag">Distribution</span>
+          </div>
+        </div>
+        <div class="service-card" onclick="showPage('services')">
+          <span class="service-card-arrow">↗</span>
+          <div class="service-card-icon">🔄</div>
+          <h3 class="service-card-title">Multi-Modal Logistics</h3>
+          <p class="service-card-desc">Seamless coordination between road and port operations. We manage customs documentation support, port liaisoning, and last-mile delivery.</p>
+          <div class="service-card-ports">
+            <span class="port-tag">Road</span>
+            <span class="port-tag">Port</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why-section">
+    <div class="why-bg"></div>
+    <div class="container">
+      <div class="why-content">
+        <div class="why-left">
+          <div class="tag">Why Choose MOVEX</div>
+          <h2 class="section-title" style="color:white;">Your Cargo, Our <span>Responsibility</span></h2>
+          <p class="section-sub">We don't just move goods — we move your business forward. Every shipment is handled with the precision of a professional logistics partner.</p>
+          <div class="why-cta-group" style="margin-top:32px;">
+            <a href="#" onclick="showPage('booking')" class="btn btn-primary">Book a Transport</a>
+            <a href="#" onclick="showPage('about')" class="btn btn-outline">Learn About Us</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testi-section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:0;">
+        <div class="tag">Client Testimonials</div>
+        <h2 class="section-title">What Our <span>Clients</span> Say</h2>
+        <p class="section-sub">Trusted by exporters, manufacturers, and factories across Jaipur and Rajasthan.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">MoveX has been handling our container shipments to Mundra for over 3 years. Not a single delay. Their real-time tracking and professional drivers make them irreplaceable for our export business.</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:var(--orange);">RG</div>
+            <div><div class="testi-name">Rajesh Gupta</div><div class="testi-role">Director, Gupta Textiles Exports, Jaipur</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">We shifted our entire factory machinery through MoveX. Their team handled everything — packing, transport, and safe installation support. Zero damage. Highly recommend for heavy machinery moves.</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#6366f1;">AS</div>
+            <div><div class="testi-name">Anil Sharma</div><div class="testi-role">MD, Sharma Engineering Works, Bhiwadi</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Monthly contract with MoveX for goods transport to Nhava Sheva. Consistent, on-time, and the pricing is very competitive. Our shipments never miss the vessel anymore. Best logistics partner in Jaipur.</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#0891b2;">PM</div>
+            <div><div class="testi-name">Priya Mehta</div><div class="testi-role">Supply Chain Head, Mehta Ceramics</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER BANNER -->
+  <div class="offer-banner">
+    <div class="container">
+      <div class="offer-inner">
+        <div class="offer-badge">10% OFF</div>
+        <div>
+          <div class="offer-text-title">🎉 First Booking Special Discount!</div>
+          <div class="offer-text-sub">New clients get an exclusive 10% off on their first transport booking. Book now and experience the MoveX difference — risk-free.</div>
+        </div>
+        <a href="#" onclick="showPage('booking')" class="offer-cta">Claim Your Discount →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:0;">
+        <div class="tag">Frequently Asked</div>
+        <h2 class="section-title">Common <span>Questions</span></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Which ports does MoveX serve?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">We currently serve all major western Indian ports — Mundra (JNPT), Kandla, and Nhava Sheva (JNPT). We also handle other port destinations on request.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>What container sizes do you transport?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">We handle both 20-foot and 40-foot containers — standard, high-cube, and refrigerated. Our fleet is equipped for all standard shipping container types.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>How long does it take from Jaipur to Mundra?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">Transit time from Jaipur to Mundra is approximately 18–24 hours. To Kandla it's similar. Nhava Sheva (Mumbai) takes around 24–36 hours depending on traffic and route conditions.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is my cargo insured during transit?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">Yes, all shipments are covered under transit insurance. We strongly recommend cargo insurance for all shipments, which we can help arrange at a minimal cost.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Can I track my shipment in real time?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">Absolutely. All our trucks are GPS-enabled and you'll receive real-time location updates via WhatsApp or SMS. Your dedicated account manager will keep you posted at every milestone.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Do you offer monthly contract services?</span><span class="faq-icon">+</span></div>
+          <div class="faq-a">Yes, we offer monthly and annual contract transport services for businesses with regular shipping needs. Contract clients get priority trucks, fixed pricing, and a dedicated account manager.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end home page -->
+
+<!-- ==================== ABOUT PAGE ==================== -->
+<div id="page-about" class="page">
+  <div class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="container">
+      <div class="about-hero-content">
+        <div class="tag">About MoveX</div>
+        <h1>Jaipur's Most Trusted <span style="color:var(--orange)">Logistics Partner</span></h1>
+        <p>For over 8 years, MoveX Transportation & Logistics has been the backbone of Rajasthan's export and manufacturing supply chain — connecting businesses in Jaipur to ports and markets across India.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section about-main">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-visual-stat"><div class="avs-num">1+</div><div class="avs-label">Years in the logistics industry</div></div>
+          <div class="about-visual-stat"><div class="avs-num">50+</div><div class="avs-label">Satisfied business clients</div></div>
+          <div class="about-visual-stat"><div class="avs-num">50+</div><div class="avs-label">Successful trips completed</div></div>
+          <div class="about-visual-stat"><div class="avs-num">3</div><div class="avs-label">Major Indian ports served</div></div>
+        </div>
+        <div class="about-text">
+          <div class="tag">Our Story</div>
+          <h2 class="section-title">Built by Logistics <span>Experts</span>, for Business</h2>
+          <p>MoveX Transportation & Logistics was founded with one clear purpose: to give Jaipur's thriving export community a logistics partner they could truly rely on. Before MoveX, businesses in Rajasthan struggled with unreliable transporters, missed port cutoffs, and zero visibility into their cargo.</p>
+          <p>We changed that. Starting with a small fleet of 5 trucks in 2026, we've grown into a full-scale logistics company with a proven track record of delivering containers to Mundra, Kandla, and Nhava Sheva — on time, every time.</p>
+          <p>Today, we serve over 500 businesses — exporters, textile manufacturers, ceramic companies, engineering factories, and more. Each client receives the same dedication: professional drivers, GPS-tracked vehicles, full insurance, and a team that treats your cargo like their own.</p>
+          <div class="mv-cards">
+            <div class="mv-card">
+              <div class="mv-icon">🎯</div>
+              <div class="mv-title">Our Mission</div>
+              <div class="mv-text">To provide reliable, efficient, and transparent logistics solutions that empower Rajasthan's businesses to compete on a national and global stage without supply chain worries.</div>
+            </div>
+            <div class="mv-card">
+              <div class="mv-icon">🌟</div>
+              <div class="mv-title">Our Vision</div>
+              <div class="mv-text">To become the most trusted transportation partner for every factory, exporter, and manufacturer in Rajasthan — the first call businesses make when cargo needs to move.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section team-section">
+    <div class="container">
+      <div class="text-center">
+        <div class="tag">Our Core Values</div>
+        <h2 class="section-title">What We Stand <span>For</span></h2>
+        <p class="section-sub">Every decision at MoveX is guided by these principles. They define how we operate and how we treat every client, driver, and partner.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <div class="value-title">Reliability</div>
+          <div class="value-text">We show up when we say we will. No excuses, no last-minute surprises. Your business depends on us — and we take that seriously.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🔍</div>
+          <div class="value-title">Transparency</div>
+          <div class="value-text">Real-time tracking, clear pricing, honest communication. You always know what's happening with your cargo and why.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚡</div>
+          <div class="value-title">Efficiency</div>
+          <div class="value-text">We optimize every route, coordinate pickups precisely, and cut waste from the logistics process so your goods move faster and cheaper.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🛡️</div>
+          <div class="value-title">Safety</div>
+          <div class="value-text">Our drivers are trained, our trucks are maintained, and every shipment is insured. Safety of your cargo is our #1 operational priority.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📈</div>
+          <div class="value-title">Growth-Oriented</div>
+          <div class="value-text">We grow with our clients. As your business scales, we scale our services to match — from one truck a month to daily contract runs.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💬</div>
+          <div class="value-title">Client-First</div>
+          <div class="value-text">You're not a ticket number at MoveX. You get a real person, responsive service, and a partner who genuinely cares about your success.</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="#" onclick="showPage('booking')" class="btn btn-primary" style="font-size:1rem;padding:15px 32px;">🚛 Work With Us</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== SERVICES PAGE ==================== -->
+<div id="page-services" class="page">
+  <div class="services-hero">
+    <div class="services-hero-bg"></div>
+    <div class="container">
+      <div class="services-hero-content">
+        <div class="tag">Our Services</div>
+        <h1>Complete Logistics <span style="color:var(--orange)">Solutions</span> for Your Business</h1>
+        <p>From factory floor to export port, MoveX handles every stage of your supply chain with precision, reliability, and full transparency. No cargo too heavy, no route too complex.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section services-full">
+    <div class="container">
+
+      <div class="service-block">
+        <div class="service-block-visual"><div class="service-block-emoji">🚢</div></div>
+        <div>
+          <div class="tag">Core Service</div>
+          <h2 class="service-block-title">Port Container Transport</h2>
+          <p class="service-block-desc">Our flagship service — transporting loaded export containers from Jaipur factories and warehouses directly to major Indian ports. We understand export timelines, port cutoffs, and the consequences of delays. That's why we guarantee on-time delivery with a fully GPS-tracked fleet.</p>
+          <div class="ports-served">
+            <div class="ports-title">Ports We Serve</div>
+            <div class="ports-list">
+              <span class="port-badge">⚓ Mundra Port (Gujarat)</span>
+              <span class="port-badge">⚓ Kandla Port (Gujarat)</span>
+              <span class="port-badge">⚓ Nhava Sheva / JNPT (Mumbai)</span>
+            </div>
+          </div>
+          <div class="service-features">
+            <div class="service-feature"><span class="sf-check">✓</span> 20' and 40' container handling</div>
+            <div class="service-feature"><span class="sf-check">✓</span> 24–48 hour transit guarantee</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Live GPS tracking & WhatsApp updates</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Full cargo insurance available</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Port documentation coordination support</div>
+          </div>
+          <a href="#" onclick="showPage('booking')" class="btn btn-primary">Book Container Transport</a>
+        </div>
+      </div>
+
+      <div class="service-block reverse">
+        <div>
+          <div class="tag">Factory Services</div>
+          <h2 class="service-block-title">Factory Goods Transport</h2>
+          <p class="service-block-desc">Running a factory means constant inbound raw material and outbound finished goods movement. MoveX offers dedicated factory logistics — scheduled pickups, reliable drop-offs, and the discipline to fit your production cycle. We serve textile units, ceramic factories, engineering works, FMCG companies, and more across Jaipur and Rajasthan.</p>
+          <div class="service-features">
+            <div class="service-feature"><span class="sf-check">✓</span> Scheduled daily or weekly pickups</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Raw material inbound & finished goods outbound</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Multiple vehicle sizes — mini trucks to 32-footers</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Trained loading & unloading crew</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Invoice and documentation support</div>
+          </div>
+          <a href="#" onclick="showPage('booking')" class="btn btn-primary">Discuss Factory Transport</a>
+        </div>
+        <div class="service-block-visual"><div class="service-block-emoji">🏭</div></div>
+      </div>
+
+      <div class="service-block">
+        <div class="service-block-visual"><div class="service-block-emoji">⚙️</div></div>
+        <div>
+          <div class="tag">Specialized Service</div>
+          <h2 class="service-block-title">Machinery Shifting</h2>
+          <p class="service-block-desc">Moving industrial machinery requires more than a truck — it requires expertise. MoveX has a specialized fleet and trained crew for heavy machinery and equipment transport. Whether you're relocating a factory, upgrading equipment, or shifting assets between plants, we do it safely and efficiently.</p>
+          <div class="service-features">
+            <div class="service-feature"><span class="sf-check">✓</span> Heavy load vehicles — low-bed trailers available</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Rigging, securing, and protective wrapping</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Route survey and permit management</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Full insurance coverage for high-value assets</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Factory relocation planning support</div>
+          </div>
+          <a href="#" onclick="showPage('booking')" class="btn btn-primary">Get Machinery Quote</a>
+        </div>
+      </div>
+
+      <div class="service-block reverse">
+        <div>
+          <div class="tag">Contract Services</div>
+          <h2 class="service-block-title">Regular Contract Transport</h2>
+          <p class="service-block-desc">For businesses with predictable, regular transport needs — a monthly or annual contract with MoveX is the smartest and most cost-effective solution. You get priority fleet allocation, fixed pricing, a dedicated account manager, and the peace of mind that your logistics are locked in and professional.</p>
+          <div class="service-features">
+            <div class="service-feature"><span class="sf-check">✓</span> Monthly and annual contracts available</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Priority truck allocation — no waiting</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Fixed, transparent pricing structure</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Dedicated account manager</div>
+            <div class="service-feature"><span class="sf-check">✓</span> Monthly reporting and billing</div>
+          </div>
+          <a href="#" onclick="showPage('contact')" class="btn btn-primary">Discuss a Contract</a>
+        </div>
+        <div class="service-block-visual"><div class="service-block-emoji">📋</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <div class="offer-banner">
+    <div class="container">
+      <div class="offer-inner">
+        <div class="offer-badge">10% OFF</div>
+        <div>
+          <div class="offer-text-title">New Client? Get 10% Off Your First Booking!</div>
+          <div class="offer-text-sub">Mention this offer when you book. Valid for all new clients across all service categories.</div>
+        </div>
+        <a href="#" onclick="showPage('booking')" class="offer-cta">Book Now →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== BOOKING PAGE ==================== -->
+<div id="page-booking" class="page">
+  <div class="booking-hero" style="background:var(--navy);position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 80% 50%,rgba(249,115,22,0.07),transparent);"></div>
+    <div class="container">
+      <div class="booking-hero-content">
+        <div class="tag">Book a Transport</div>
+        <h1>Get Your Cargo <span style="color:var(--orange)">Moving</span> Today</h1>
+        <p>Fill in the details below and our team will call you within 2 hours with a quote. First-time clients get an exclusive 10% discount — no questions asked.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section booking-section">
+    <div class="container">
+      <div class="booking-grid">
+        <div>
+          <!-- FORM STATE -->
+          <div id="booking-form-state" class="booking-form-card">
+            <div class="booking-form-title">📦 Transport Booking Request</div>
+            <div class="booking-form-sub">Our team will contact you within 2 hours with a confirmed quote.</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Full Name *</label>
+                <input type="text" class="form-control" placeholder="Rajesh Kumar" id="f-name">
+              </div>
+              <div class="form-group" id="phone">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" class="form-control" placeholder="+91 98765 43210" id="f-phone">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Company / Business Name</label>
+              <input type="text" class="form-control" placeholder="Your company name" id="f-company">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Pickup Location *</label>
+                <input type="text" class="form-control" placeholder="Factory address / area in Jaipur" id="f-pickup">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Drop Location *</label>
+                <select class="form-control" id="f-drop">
+                  <option value="">Select destination port/city</option>
+                  <option>Mundra Port, Gujarat</option>
+                  <option>Kandla Port, Gujarat</option>
+                  <option>Nhava Sheva (JNPT), Mumbai</option>
+                  <option>Other (mention in goods field)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Type of Goods *</label>
+                <select class="form-control" id="f-goods">
+                  <option value="">Select goods type</option>
+                  <option>Textile / Garments</option>
+                  <option>Ceramics / Tiles</option>
+                  <option>Engineering Goods</option>
+                  <option>FMCG Products</option>
+                  <option>Machinery / Equipment</option>
+                  <option>Raw Materials</option>
+                  <option>Chemicals</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Container / Weight</label>
+                <select class="form-control" id="f-weight">
+                  <option value="">Select size/weight</option>
+                  <option>20' Container</option>
+                  <option>40' Container</option>
+                  <option>40' HC Container</option>
+                  <option>Part Load (&lt;5 Ton)</option>
+                  <option>Full Truck (5–10 Ton)</option>
+                  <option>Full Truck (10–20 Ton)</option>
+                  <option>Heavy Machinery</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Additional Requirements</label>
+              <textarea class="form-control" rows="3" placeholder="Any special handling requirements, preferred dates, or other details..." id="f-notes" style="resize:vertical;"></textarea>
+            </div>
+            <button class="submit-btn" onclick="submitBooking()">🚛 Submit Booking Request</button>
+            <div class="form-note">🔒 Your information is secure and will only be used to contact you about your transport request. New clients receive 10% off automatically.</div>
+          </div>
+
+          <!-- SUCCESS STATE -->
+          <div id="booking-success-state" class="hidden">
+            <div class="success-box">
+              <div class="success-icon">✅</div>
+              <div class="success-title">Booking Request Received!</div>
+              <p class="success-text">Thank you! Our logistics team will contact you within <strong>2 hours</strong> with a confirmed quote and booking details. Check your WhatsApp and phone for our call.<br><br>As a first-time client, your <strong>10% new client discount</strong> has been noted on your request.</p>
+              <div class="success-ref" id="booking-ref">Reference #MX-00000</div>
+              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="https://wa.me/918529890535" target="_blank" style="display:flex;align-items:center;gap:8px;background:#25D366;color:white;padding:12px 24px;border-radius:var(--radius);font-weight:700;font-size:0.9rem;">💬 WhatsApp Us</a>
+                <button onclick="resetBooking()" class="btn btn-navy">Book Another</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-sidebar">
+          <div class="sidebar-offer">
+            <div class="sidebar-offer-pct">10%</div>
+            <div class="sidebar-offer-title">First Booking Discount!</div>
+            <div class="sidebar-offer-sub">New clients automatically get 10% off their first transport booking. No coupon needed — mention it to our team.</div>
+          </div>
+          <div class="sidebar-card">
+            <div class="sidebar-title">Need Help? Contact Us</div>
+            <div class="contact-item">
+              <div class="ci-icon">📞</div>
+              <div><div class="ci-label">Call / WhatsApp</div><div class="ci-val">+91 85298 90535</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">📧</div>
+              <div><div class="ci-label">Email</div><div class="ci-val">support.movex@gmail.com</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">🕐</div>
+              <div><div class="ci-label">Response Time</div><div class="ci-val">Within 2 Hours</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">📍</div>
+              <div><div class="ci-label">Based In</div><div class="ci-val">Jaipur, Rajasthan</div></div>
+            </div>
+            <a href="https://wa.me/918529890535" target="_blank" class="whatsapp-big-btn" style="margin-top:16px;display:flex;">💬 Chat on WhatsApp</a>
+          </div>
+          <div class="sidebar-card">
+            <div class="sidebar-title">Why Book With MoveX</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="service-feature"><span class="sf-check">✓</span> <span style="font-size:0.87rem;color:var(--gray-dark);">Response within 2 hours</span></div>
+              <div class="service-feature"><span class="sf-check">✓</span> <span style="font-size:0.87rem;color:var(--gray-dark);">Transparent, competitive pricing</span></div>
+              <div class="service-feature"><span class="sf-check">✓</span> <span style="font-size:0.87rem;color:var(--gray-dark);">GPS tracked vehicles</span></div>
+              <div class="service-feature"><span class="sf-check">✓</span> <span style="font-size:0.87rem;color:var(--gray-dark);">Full transit insurance</span></div>
+              <div class="service-feature"><span class="sf-check">✓</span> <span style="font-size:0.87rem;color:var(--gray-dark);">Dedicated account manager</span></div>
+              <div class="service-feature"><span class="sf-check">✓</span> <span style="font-size:0.87rem;color:var(--gray-dark);">500+ satisfied businesses</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== CONTACT PAGE ==================== -->
+<div id="page-contact" class="page">
+  <div class="contact-hero" style="background:var(--navy);position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 80% 50%,rgba(249,115,22,0.07),transparent);"></div>
+    <div class="container">
+      <div class="contact-hero-content">
+        <div class="tag">Get In Touch</div>
+        <h1>Let's Move Your <span style="color:var(--orange)">Cargo</span> Together</h1>
+        <p>Whether you need a quick quote, have questions about our services, or want to discuss a long-term logistics contract — our team is ready to help.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <div class="contact-info-title">Reach Us Directly</div>
+          <div class="contact-info-sub">Our team operates 7 days a week. For urgent transport requirements, call or WhatsApp us and we'll respond within minutes.</div>
+          <div class="contact-cards">
+            <div class="contact-card">
+              <div class="cc-icon">📞</div>
+              <div>
+                <div class="cc-label">Phone & WhatsApp</div>
+                <div class="cc-val">+91 8529890535</div>
+                <div class="cc-sub">Available Mon–Sat, 8 AM – 8 PM</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon">📧</div>
+              <div>
+                <div class="cc-label">Email</div>
+                <div class="cc-val">support.movex@gmail.com</div>
+                <div class="cc-sub">We respond within 4 hours on business days</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon">📍</div>
+              <div>
+                <div class="cc-label">Office Location</div>
+                <div class="cc-val">Jaipur, Rajasthan – 302028</div>
+                <div class="cc-sub">Serving all of Rajasthan & surrounding states</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="cc-icon">🕐</div>
+              <div>
+                <div class="cc-label">Business Hours</div>
+                <div class="cc-val">Monday – Saturday, 8 AM – 8 PM</div>
+                <div class="cc-sub">Emergency transport: 24/7 WhatsApp</div>
+              </div>
+            </div>
+          </div>
+          <a href="https://wa.me/918529890535" target="_blank" class="whatsapp-big-btn">
+            💬 Chat on WhatsApp Now
+          </a>
+          <div class="map-placeholder">
+            <div style="font-size:2.5rem;">📍</div>
+            <div style="font-weight:700;color:var(--navy);">MoveX Office — Jaipur, Rajasthan</div>
+            <div style="font-size:0.82rem;color:var(--gray);text-align:center;max-width:240px;">Contact us for the exact office address. We welcome visits by appointment.</div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <div class="contact-form-title">📬 Send Us a Message</div>
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input type="text" class="form-control" placeholder="Your full name" id="c-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX" id="c-phone">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" placeholder="your@email.com" id="c-email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <select class="form-control" id="c-subject">
+              <option>Request a Transport Quote</option>
+              <option>Contract Services Inquiry</option>
+              <option>Existing Booking Follow-up</option>
+              <option>General Inquiry</option>
+              <option>Feedback / Complaint</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message *</label>
+            <textarea class="form-control" rows="5" placeholder="Tell us about your transport requirements, cargo type, route, timeline, or any other details..." id="c-message" style="resize:vertical;"></textarea>
+          </div>
+          <button class="submit-btn" onclick="submitContact()">📨 Send Message</button>
+          <div class="form-note" style="margin-top:12px;">We respond to all messages within 4 business hours. For urgent requirements, please call or WhatsApp directly.</div>
+          <div id="contact-success" class="hidden" style="margin-top:20px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--radius);padding:20px;text-align:center;">
+            <div style="font-size:1.5rem;margin-bottom:8px;">✅</div>
+            <div style="font-weight:700;color:#166534;margin-bottom:4px;">Message Sent!</div>
+            <div style="font-size:0.88rem;color:#15803d;">We'll get back to you within 4 hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="#" onclick="showPage('home')">
+            <div class="logo-icon">
+              <svg viewBox="0 0 24 24"><path d="M1 3h15v11H1zm20 5-4-3v13l4-3V8zm-7 7H1v3l3 3h10v-6zm-9 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm10 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+            </div>
+            <span class="logo-text">Move<span>X</span></span>
+          </a>
+          <p class="footer-brand-desc">Jaipur's most trusted logistics partner for container transport, factory goods movement, and export logistics to major Indian ports.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn">📘</a>
+            <a href="#" class="social-btn">📸</a>
+            <a href="#" class="social-btn">💼</a>
+            <a href="https://wa.me/918529890535" target="_blank" class="social-btn">💬</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <div class="footer-links">
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('about')">About Us</a>
+            <a href="#" onclick="showPage('services')">Services</a>
+            <a href="#" onclick="showPage('booking')">Book Transport</a>
+            <a href="#" onclick="showPage('contact')">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <div class="footer-links">
+            <a href="#" onclick="showPage('services')">Container Transport</a>
+            <a href="#" onclick="showPage('services')">Factory Logistics</a>
+            <a href="#" onclick="showPage('services')">Machinery Shifting</a>
+            <a href="#" onclick="showPage('services')">Contract Transport</a>
+            <a href="#" onclick="showPage('services')">Warehouse Movement</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <div class="footer-links">
+            <a href="tel:+918529890535">📞 +91 85298 90535</a>
+            <a href="https://wa.me/918529890535" target="_blank">💬 WhatsApp</a>
+            <a href="mailto:support.movex@gmail.com">📧 support.movex@gmail.com</a>
+            <a href="#">📍 Jaipur, Rajasthan</a>
+          </div>
+          <div style="margin-top:20px;">
+            <a href="#" onclick="showPage('booking')" class="btn btn-primary" style="font-size:0.88rem;padding:11px 20px;">Book Transport Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 MoveX Transportation & Logistics, Jaipur. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-btns">
+  <a href="https://wa.me/918529890535?text=Hi%20MoveX%2C%20I%20need%20a%20transport%20quote." target="_blank" class="float-wa">💬 <span>WhatsApp Us</span></a>
+  <a href="tel:+918529890535" class="float-call">📞</a>
+</div>
+<script src="/js/scrit.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>
