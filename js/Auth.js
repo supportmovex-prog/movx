@@ -31,7 +31,7 @@ async function loginUser(){
     try{
         const data = {
             email: document.getElementById("email").value,
-            password: document.getElementById("email").value
+            password: document.getElementById("password").value
         };
         const res = await fetch(`${API}/login`,{
             method:"POST",
