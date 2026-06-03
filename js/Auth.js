@@ -8,7 +8,14 @@ async function signupUser(){
             email: document.getElementById("email").value,
             password: document.getElementById("password").value
         };
+<<<<<<< HEAD
         const res = await fetch(`${API}/signup`,{
+=======
+
+
+        const res = await fetch(`${API}signup`,{
+
+>>>>>>> 5cedda7 (changing ural)
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
