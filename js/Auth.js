@@ -13,7 +13,7 @@ async function signupUser(){
 =======
 
 
-        const res = await fetch(`${API}signup`,{
+        const res = await fetch(`${API}/signup`,{
 
 >>>>>>> 5cedda7 (changing ural)
             method:"POST",
