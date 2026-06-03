@@ -8,20 +8,15 @@ async function signupUser(){
             email: document.getElementById("email").value,
             password: document.getElementById("password").value
         };
-<<<<<<< HEAD
-        const res = await fetch(`${API}/signup`,{
-=======
-
 
         const res = await fetch(`${API}/signup`,{
-
->>>>>>> 5cedda7 (changing ural)
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify(data)
         });
+
         const result = await res.json();
         console.log(result);
         alert(result.message);
@@ -40,6 +35,7 @@ async function loginUser(){
             email: document.getElementById("email").value,
             password: document.getElementById("password").value
         };
+
         const res = await fetch(`${API}/login`,{
             method:"POST",
             headers:{
@@ -47,8 +43,10 @@ async function loginUser(){
             },
             body:JSON.stringify(data)
         });
+
         const result = await res.json();
         console.log(result);
+
         if(result.token){
             localStorage.setItem("token", result.token);
             localStorage.setItem("user", JSON.stringify(result.user));
