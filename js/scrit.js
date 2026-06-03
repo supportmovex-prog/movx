@@ -49,7 +49,7 @@ function toggleFaq(el) {
 }
 
 // ===== BOOKING FORM =====
-const API = "http://localhost:5000/api";
+const API = "https://movx.onrender.com";
 
 async function submitBooking() {
   const name    = document.getElementById('f-name').value.trim();
