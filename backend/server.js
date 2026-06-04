@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 // ROUTES
 app.use("/api", require("./routes/auth"));
 app.use("/api", require("./routes/booking"));
+app.use("/api", require("./routes/payment")); 
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("🚀 Server Running");

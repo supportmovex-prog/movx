@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/User");
+const User = require("../models/user");
 
 
 
@@ -111,19 +111,8 @@ router.post("/login", async (req, res) => {
 
         // TOKEN
 
-        const token = jwt.sign(
+       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-            {
-                id: user._id
-            },
-
-            "movexsecretkey",
-
-            {
-                expiresIn: "7d"
-            }
-
-        );
 
 
         res.json({
