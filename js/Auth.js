@@ -1,7 +1,6 @@
-// movex v2
+// MoveX Auth v2
 const API = "https://movx.onrender.com/api";
 
-// ===== SIGNUP =====
 async function signupUser(){
     try{
         const data = {
@@ -10,22 +9,29 @@ async function signupUser(){
             password: document.getElementById("password").value
         };
 
-        const res = await fetch(`${API}/signup`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(data)
+        const res = await fetch(`${API}/signup`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
         });
 
         const result = await res.json();
-        console.log(result);
-        alert(result.message);
-        window.location.href = "login.html";
+        console.log("Server Response:", result);
+
+        if(result.message === "Signup Successful"){
+            alert("✅ Signup Successful!");
+            window.location.href = "login.html";
+        } else if(result.message === "User Already Exists"){
+            alert("❌ User Already Exists!");
+        } else if(result.error){
+            alert("❌ Error: " + result.error);
+        } else {
+            alert("Something went wrong: " + JSON.stringify(result));
+        }
     }
     catch(err){
         console.log(err);
-        alert("Signup Error");
+        alert("❌ Server Error - 30 sec baad try karo!");
     }
 }
 
@@ -37,29 +43,26 @@ async function loginUser(){
             password: document.getElementById("password").value
         };
 
-        const res = await fetch(`${API}/login`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(data)
+        const res = await fetch(`${API}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
         });
 
         const result = await res.json();
-        console.log(result);
+        console.log("Server Response:", result);
 
         if(result.token){
             localStorage.setItem("token", result.token);
             localStorage.setItem("user", JSON.stringify(result.user));
-            alert("✅ Login Successful");
+            alert("✅ Login Successful!");
             window.location.href = "index.html";
-        }
-        else{
-            alert(result.message);
+        } else {
+            alert("❌ " + result.message);
         }
     }
     catch(err){
         console.log(err);
-        alert("Login Error");
+        alert("❌ Server Error - 30 sec baad try karo!");
     }
 }
