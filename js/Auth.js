@@ -1,5 +1,5 @@
 // movex v2
-const API = "https://movx.onrender.com/api";
+const API = "https://api.movex.services/api";
 
 async function signupUser(){
     try{
