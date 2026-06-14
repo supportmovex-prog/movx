@@ -1,26 +1,46 @@
 // MoveX Script v2
 const API = "https://api.movex.services/api";
 
-// ===== AUTH CHECK =====
+// ===== AUTH CHECK — LANDING PAGE FIRST =====
 const user = JSON.parse(localStorage.getItem("user"));
-if (!user) {
-  window.location.href = "login.html";
+
+// Navbar update based on login status
+function updateNavbar() {
+  const userPill = document.getElementById("user-pill");
+  const logoutBtn = document.querySelector(".logout-btn");
+  const usernameEl = document.getElementById("username");
+
+  if(user) {
+    if(usernameEl) usernameEl.innerText = user.name;
+    if(userPill) userPill.style.display = "flex";
+    if(logoutBtn) logoutBtn.style.display = "flex";
+  } else {
+    if(userPill) userPill.style.display = "none";
+    if(logoutBtn) logoutBtn.style.display = "none";
+  }
 }
-document.getElementById("username").innerText = user.name;
+updateNavbar();
 
 function logout() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 }
 
 // ===== PAGE NAVIGATION =====
 function showPage(id) {
+  // Auth check for protected pages
+  if((id === 'dashboard' || id === 'booking') && !user) {
+    alert("⚠️ Please login first to continue!");
+    window.location.href = "login.html";
+    return;
+  }
+
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const navEl = document.getElementById('nav-' + id);
-  if (navEl) navEl.classList.add('active');
+  if(navEl) navEl.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if(id === 'dashboard') loadDashboard();
 }
@@ -41,7 +61,7 @@ function toggleFaq(el) {
   const allA = document.querySelectorAll('.faq-a');
   const idx = Array.from(allQ).indexOf(el);
   allQ.forEach((q, i) => {
-    if (i === idx) {
+    if(i === idx) {
       const isOpen = q.classList.contains('open');
       q.classList.toggle('open', !isOpen);
       allA[i].classList.toggle('open', !isOpen);
@@ -57,13 +77,11 @@ let allBookings = [];
 let currentTab = 'current';
 
 function loadDashboard() {
-  // User info
+  if(!user) { window.location.href = "login.html"; return; }
   document.getElementById('dash-name').innerText = user.name;
   document.getElementById('dash-email').innerText = user.email;
   document.getElementById('dash-username').innerText = user.name;
   document.getElementById('dash-avatar').innerText = user.name.charAt(0).toUpperCase();
-
-  // Bookings load
   fetchBookings();
 }
 
@@ -79,10 +97,10 @@ async function fetchBookings() {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
-    allBookings = await res.json();
+    const data = await res.json();
+    allBookings = Array.isArray(data) ? data : (data.bookings || []);
     document.getElementById('dash-loading').style.display = 'none';
 
-    // Stats update
     const pending = allBookings.filter(b => b.status === 'Pending' || !b.status);
     const completed = allBookings.filter(b => b.status === 'Completed');
     document.getElementById('stat-total').innerText = allBookings.length;
@@ -90,7 +108,6 @@ async function fetchBookings() {
     document.getElementById('stat-completed').innerText = completed.length;
 
     renderBookings();
-
   } catch(err) {
     document.getElementById('dash-loading').innerHTML = '<div style="color:red;text-align:center;">❌ Could not load bookings.</div>';
   }
@@ -98,24 +115,18 @@ async function fetchBookings() {
 
 function switchTab(tab) {
   currentTab = tab;
-
-  // Tab styling
   document.getElementById('tab-current').style.background = tab === 'current' ? 'var(--orange)' : '#f1f5f9';
   document.getElementById('tab-current').style.color = tab === 'current' ? 'white' : 'var(--navy)';
   document.getElementById('tab-previous').style.background = tab === 'previous' ? 'var(--orange)' : '#f1f5f9';
   document.getElementById('tab-previous').style.color = tab === 'previous' ? 'white' : 'var(--navy)';
-
-  // Show/hide lists
   document.getElementById('dash-current-list').style.display = tab === 'current' ? 'block' : 'none';
   document.getElementById('dash-previous-list').style.display = tab === 'previous' ? 'block' : 'none';
-
   renderBookings();
 }
 
 function renderBookings() {
   const current = allBookings.filter(b => b.status === 'Pending' || !b.status);
   const previous = allBookings.filter(b => b.status === 'Completed' || b.status === 'Cancelled');
-
   const bookings = currentTab === 'current' ? current : previous;
   const listId = currentTab === 'current' ? 'dash-current-list' : 'dash-previous-list';
 
@@ -137,18 +148,10 @@ function renderBookings() {
         </span>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div style="font-size:0.85rem;color:var(--gray);">
-          📍 <span style="color:var(--navy);font-weight:500;">Pickup:</span> ${b.pickup}
-        </div>
-        <div style="font-size:0.85rem;color:var(--gray);">
-          🏁 <span style="color:var(--navy);font-weight:500;">Drop:</span> ${b.drop}
-        </div>
-        <div style="font-size:0.85rem;color:var(--gray);">
-          📱 <span style="color:var(--navy);font-weight:500;">Phone:</span> ${b.phone}
-        </div>
-        <div style="font-size:0.85rem;color:var(--gray);">
-          📅 <span style="color:var(--navy);font-weight:500;">Date:</span> ${new Date(b.createdAt).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}
-        </div>
+        <div style="font-size:0.85rem;color:var(--gray);">📍 <span style="color:var(--navy);font-weight:500;">Pickup:</span> ${b.pickup}</div>
+        <div style="font-size:0.85rem;color:var(--gray);">🏁 <span style="color:var(--navy);font-weight:500;">Drop:</span> ${b.drop}</div>
+        <div style="font-size:0.85rem;color:var(--gray);">📱 <span style="color:var(--navy);font-weight:500;">Phone:</span> ${b.phone}</div>
+        <div style="font-size:0.85rem;color:var(--gray);">📅 <span style="color:var(--navy);font-weight:500;">Date:</span> ${new Date(b.createdAt).toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'})}</div>
         ${b.company ? `<div style="font-size:0.85rem;color:var(--gray);">🏢 <span style="color:var(--navy);font-weight:500;">Company:</span> ${b.company}</div>` : ''}
       </div>
       ${b.notes ? `<div style="margin-top:10px;font-size:0.83rem;color:var(--gray);background:#f8fafc;padding:8px 12px;border-radius:8px;">📝 ${b.notes}</div>` : ''}
@@ -158,6 +161,13 @@ function renderBookings() {
 
 // ===== BOOKING FORM =====
 async function submitBooking() {
+  // Auth check
+  if(!user) {
+    alert("⚠️ Please login first to book a transport!");
+    window.location.href = "login.html";
+    return;
+  }
+
   const name    = document.getElementById('f-name').value.trim();
   const phone   = document.getElementById('f-phone').value.trim();
   const pickup  = document.getElementById('f-pickup').value.trim();
@@ -167,26 +177,19 @@ async function submitBooking() {
   const notes   = document.getElementById('f-notes').value.trim();
   const company = document.getElementById('f-company').value.trim();
 
-  // Validation
   if(!name) { alert('❌ Please enter your full name.'); return; }
-
   const phoneDigits = phone.replace(/\D/g, '');
   if(!phone) { alert('❌ Please enter phone number.'); return; }
   if(phoneDigits.length < 10) { alert('❌ Phone number must be at least 10 digits.'); return; }
-
   if(!pickup) { alert('❌ Please enter pickup location.'); return; }
   if(!drop) { alert('❌ Please enter drop location.'); return; }
   if(!goods) { alert('❌ Please select type of goods.'); return; }
 
   const data = {
     userId:    user.id,
-    name:      name,
-    phone:     phone,
-    pickup:    pickup,
-    drop:      drop,
+    name, phone, pickup, drop,
     truckType: goods + (weight ? ' | ' + weight : ''),
-    notes:     notes,
-    company:   company
+    notes, company
   };
 
   try {
@@ -195,9 +198,7 @@ async function submitBooking() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
-
     const result = await res.json();
-
     if(res.ok) {
       const ref = 'MX-' + Math.floor(10000 + Math.random() * 90000);
       document.getElementById('booking-ref').textContent = 'Reference #' + ref;
@@ -224,13 +225,10 @@ function submitContact() {
   const name = document.getElementById('c-name').value.trim();
   const phone = document.getElementById('c-phone').value.trim();
   const msg = document.getElementById('c-message').value.trim();
-
   if(!name) { alert('❌ Please enter your name.'); return; }
   const phoneDigits = phone.replace(/\D/g, '');
-  if(!phone) { alert('❌ Please enter phone number.'); return; }
-  if(phoneDigits.length < 10) { alert('❌ Phone must be 10 digits.'); return; }
+  if(!phone || phoneDigits.length < 10) { alert('❌ Please enter valid 10 digit phone.'); return; }
   if(!msg) { alert('❌ Please enter your message.'); return; }
-
   document.getElementById('contact-success').classList.remove('hidden');
   ['c-name','c-phone','c-email','c-message'].forEach(id => document.getElementById(id).value = '');
   setTimeout(() => document.getElementById('contact-success').classList.add('hidden'), 6000);
