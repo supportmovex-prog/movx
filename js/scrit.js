@@ -207,13 +207,7 @@ async function submitBooking() {
       document.getElementById('booking-success-state').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // ✅ WhatsApp message 2 second baad open hoga
-      if(result.whatsappUrl) {
-        setTimeout(() => {
-          window.open(result.whatsappUrl, '_blank');
-        }, 2000);
-      }
-
+    
     } else {
       alert('Booking failed: ' + (result.error || result.message));
     }
