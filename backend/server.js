@@ -22,6 +22,7 @@ app.use(express.json());
 // ROUTES
 app.use("/api", require("./routes/auth"));
 app.use("/api", require("./routes/booking"));
+app.use("/api", require("./routes/admin"));
 
 app.listen(process.env.PORT || 5000, "0.0.0.0", () => {
   console.log("🚀 Server Running");

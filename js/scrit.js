@@ -161,7 +161,6 @@ function renderBookings() {
 
 // ===== BOOKING FORM =====
 async function submitBooking() {
-  // Auth check
   if(!user) {
     alert("⚠️ Please login first to book a transport!");
     window.location.href = "login.html";
@@ -199,12 +198,22 @@ async function submitBooking() {
       body: JSON.stringify(data)
     });
     const result = await res.json();
+
     if(res.ok) {
+      // Success state show karo
       const ref = 'MX-' + Math.floor(10000 + Math.random() * 90000);
       document.getElementById('booking-ref').textContent = 'Reference #' + ref;
       document.getElementById('booking-form-state').classList.add('hidden');
       document.getElementById('booking-success-state').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // ✅ WhatsApp message 2 second baad open hoga
+      if(result.whatsappUrl) {
+        setTimeout(() => {
+          window.open(result.whatsappUrl, '_blank');
+        }, 2000);
+      }
+
     } else {
       alert('Booking failed: ' + (result.error || result.message));
     }

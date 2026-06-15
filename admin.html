@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveX Admin Panel</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background:#f1f5f9; }
+
+        .admin-login {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e3a5f, #f97316);
+        }
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            width: 360px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .login-card h1 { color: #1e3a5f; margin-bottom: 8px; }
+        .login-card p { color: #64748b; margin-bottom: 24px; font-size: 0.9rem; }
+        .login-card input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            outline: none;
+        }
+        .login-card input:focus { border-color: #f97316; }
+        .login-card button {
+            width: 100%;
+            padding: 13px;
+            background: #f97316;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .login-card button:hover { background: #ea6c00; }
+
+        /* DASHBOARD */
+        .admin-dashboard { display: none; }
+        .admin-navbar {
+            background: #1e3a5f;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-navbar h1 { color: white; font-size: 1.2rem; }
+        .admin-navbar button {
+            background: #f97316;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            padding: 24px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .stat-card .num { font-size: 2rem; font-weight: 800; color: #f97316; }
+        .stat-card .label { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+
+        .bookings-section { padding: 0 24px 24px; }
+        .bookings-section h2 { color: #1e3a5f; margin-bottom: 16px; font-size: 1.1rem; }
+
+        .booking-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid #f97316;
+        }
+        .booking-card.completed { border-left-color: #16a34a; }
+        .booking-card.cancelled { border-left-color: #dc2626; }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .booking-name { font-weight: 700; color: #1e3a5f; font-size: 1rem; }
+        .booking-date { font-size: 0.8rem; color: #94a3b8; }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .booking-detail { font-size: 0.85rem; color: #64748b; }
+        .booking-detail span { color: #1e3a5f; font-weight: 500; }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .status-pending { background: #fef3c7; color: #d97706; }
+        .status-confirmed { background: #dbeafe; color: #1d4ed8; }
+        .status-completed { background: #f0fdf4; color: #16a34a; }
+        .status-cancelled { background: #fef2f2; color: #dc2626; }
+
+        .action-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+        .action-btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-confirm { background: #dbeafe; color: #1d4ed8; }
+        .btn-complete { background: #f0fdf4; color: #16a34a; }
+        .btn-cancel { background: #fef2f2; color: #dc2626; }
+        .btn-wa { background: #dcfce7; color: #16a34a; }
+
+        .filter-bar {
+            padding: 0 24px 16px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: #f1f5f9;
+            color: #1e3a5f;
+        }
+        .filter-btn.active { background: #f97316; color: white; }
+
+        .loading { text-align: center; padding: 40px; color: #94a3b8; }
+        .search-bar {
+            padding: 0 24px 16px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+        .search-bar input:focus { border-color: #f97316; }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div class="admin-login" id="admin-login">
+    <div class="login-card">
+        <h1>🚛 MoveX</h1>
+        <p>Admin Panel — Authorized Access Only</p>
+        <input type="password" id="admin-pass" placeholder="Enter Admin Password" onkeypress="if(event.key==='Enter') adminLogin()">
+        <button onclick="adminLogin()">Login to Admin Panel</button>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="admin-dashboard" id="admin-dashboard">
+
+    <!-- NAVBAR -->
+    <div class="admin-navbar">
+        <h1>🚛 MoveX Admin Panel</h1>
+        <div style="display:flex;gap:8px;align-items:center;">
+            <span id="last-updated" style="color:rgba(255,255,255,0.6);font-size:0.8rem;"></span>
+            <button onclick="loadBookings()">🔄 Refresh</button>
+            <button onclick="adminLogout()" style="background:#dc2626;">Logout</button>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="num" id="s-total">0</div>
+            <div class="label">Total Bookings</div>
+        </div>
+        <div class="stat-card">
+            <div class="num" id="s-pending" style="color:#d97706;">0</div>
+            <div class="label">Pending</div>
+        </div>
+        <div class="stat-card">
+            <div class="num" id="s-confirmed" style="color:#1d4ed8;">0</div>
+            <div class="label">Confirmed</div>
+        </div>
+        <div class="stat-card">
+            <div class="num" id="s-completed" style="color:#16a34a;">0</div>
+            <div class="label">Completed</div>
+        </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="🔍 Search by name, phone, pickup, drop..." oninput="filterBookings()">
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+        <button class="filter-btn" onclick="setFilter('Pending', this)">⏳ Pending</button>
+        <button class="filter-btn" onclick="setFilter('Confirmed', this)">✅ Confirmed</button>
+        <button class="filter-btn" onclick="setFilter('Completed', this)">🏁 Completed</button>
+        <button class="filter-btn" onclick="setFilter('Cancelled', this)">❌ Cancelled</button>
+    </div>
+
+    <!-- BOOKINGS LIST -->
+    <div class="bookings-section">
+        <h2>📋 All Bookings</h2>
+        <div id="bookings-list">
+            <div class="loading">⏳ Loading bookings...</div>
+        </div>
+    </div>
+</div>
+
+<script>
+const API = "https://api.movex.services/api";
+let adminToken = "";
+let allBookings = [];
+let currentFilter = 'all';
+
+// ===== LOGIN =====
+async function adminLogin() {
+    const password = document.getElementById("admin-pass").value;
+    if(!password) { alert("❌ Enter password!"); return; }
+
+    try {
+        const res = await fetch(`${API}/admin/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password })
+        });
+        const result = await res.json();
+
+        if(result.success) {
+            adminToken = result.token;
+            sessionStorage.setItem('adminToken', adminToken);
+            document.getElementById("admin-login").style.display = "none";
+            document.getElementById("admin-dashboard").style.display = "block";
+            loadBookings();
+            // Auto refresh every 30 seconds
+            setInterval(loadBookings, 30000);
+        } else {
+            alert("❌ Wrong Password!");
+        }
+    } catch(err) {
+        alert("❌ Server Error: " + err.message);
+    }
+}
+
+function adminLogout() {
+    sessionStorage.removeItem('adminToken');
+    adminToken = "";
+    document.getElementById("admin-login").style.display = "flex";
+    document.getElementById("admin-dashboard").style.display = "none";
+}
+
+// Check session
+window.onload = () => {
+    const saved = sessionStorage.getItem('adminToken');
+    if(saved) {
+        adminToken = saved;
+        document.getElementById("admin-login").style.display = "none";
+        document.getElementById("admin-dashboard").style.display = "block";
+        loadBookings();
+        setInterval(loadBookings, 30000);
+    }
+};
+
+// ===== LOAD BOOKINGS =====
+async function loadBookings() {
+    try {
+        const res = await fetch(`${API}/admin/bookings`, {
+            headers: { 'admin-token': adminToken }
+        });
+        const data = await res.json();
+        allBookings = data.bookings || [];
+
+        // Stats
+        document.getElementById('s-total').innerText = allBookings.length;
+        document.getElementById('s-pending').innerText = allBookings.filter(b => b.status === 'Pending' || !b.status).length;
+        document.getElementById('s-confirmed').innerText = allBookings.filter(b => b.status === 'Confirmed').length;
+        document.getElementById('s-completed').innerText = allBookings.filter(b => b.status === 'Completed').length;
+
+        document.getElementById('last-updated').innerText = 'Updated: ' + new Date().toLocaleTimeString('en-IN');
+
+        renderBookings();
+    } catch(err) {
+        document.getElementById('bookings-list').innerHTML = '<div class="loading">❌ Error loading bookings</div>';
+    }
+}
+
+// ===== FILTER =====
+function setFilter(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderBookings();
+}
+
+function filterBookings() {
+    renderBookings();
+}
+
+// ===== RENDER =====
+function renderBookings() {
+    const search = document.getElementById('search-input').value.toLowerCase();
+
+    let filtered = allBookings;
+
+    if(currentFilter !== 'all') {
+        filtered = filtered.filter(b => {
+            if(currentFilter === 'Pending') return b.status === 'Pending' || !b.status;
+            return b.status === currentFilter;
+        });
+    }
+
+    if(search) {
+        filtered = filtered.filter(b =>
+            (b.name || '').toLowerCase().includes(search) ||
+            (b.phone || '').includes(search) ||
+            (b.pickup || '').toLowerCase().includes(search) ||
+            (b.drop || '').toLowerCase().includes(search) ||
+            (b.company || '').toLowerCase().includes(search)
+        );
+    }
+
+    if(filtered.length === 0) {
+        document.getElementById('bookings-list').innerHTML = '<div class="loading">📭 No bookings found</div>';
+        return;
+    }
+
+    document.getElementById('bookings-list').innerHTML = filtered.map(b => `
+        <div class="booking-card ${(b.status || '').toLowerCase()}" id="card-${b._id}">
+            <div class="booking-header">
+                <div>
+                    <div class="booking-name">👤 ${b.name}</div>
+                    <div class="booking-date">📅 ${new Date(b.createdAt).toLocaleString('en-IN')}</div>
+                </div>
+                <span class="status-badge status-${(b.status || 'pending').toLowerCase()}">
+                    ${b.status || 'Pending'}
+                </span>
+            </div>
+
+            <div class="booking-details">
+                <div class="booking-detail">📱 Phone: <span>${b.phone}</span></div>
+                <div class="booking-detail">🏢 Company: <span>${b.company || 'N/A'}</span></div>
+                <div class="booking-detail">📍 Pickup: <span>${b.pickup}</span></div>
+                <div class="booking-detail">🏁 Drop: <span>${b.drop}</span></div>
+                <div class="booking-detail">📦 Goods: <span>${b.truckType || 'N/A'}</span></div>
+            </div>
+
+            ${b.notes ? `<div style="font-size:0.83rem;color:#64748b;background:#f8fafc;padding:8px 12px;border-radius:8px;margin-bottom:8px;">📝 ${b.notes}</div>` : ''}
+
+            <div class="action-btns">
+                <button class="action-btn btn-confirm" onclick="updateStatus('${b._id}', 'Confirmed')">✅ Confirm</button>
+                <button class="action-btn btn-complete" onclick="updateStatus('${b._id}', 'Completed')">🏁 Complete</button>
+                <button class="action-btn btn-cancel" onclick="updateStatus('${b._id}', 'Cancelled')">❌ Cancel</button>
+                <button class="action-btn btn-wa" onclick="openWhatsApp('${b.phone}', '${b.name}')">💬 WhatsApp</button>
+                <a href="tel:${b.phone}" class="action-btn" style="background:#dbeafe;color:#1d4ed8;text-decoration:none;">📞 Call</a>
+            </div>
+        </div>
+    `).join('');
+}
+
+// ===== UPDATE STATUS =====
+async function updateStatus(id, status) {
+    try {
+        const res = await fetch(`${API}/admin/booking/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "admin-token": adminToken
+            },
+            body: JSON.stringify({ status })
+        });
+        const result = await res.json();
+        if(result.message === "Status Updated") {
+            await loadBookings();
+        }
+    } catch(err) {
+        alert("❌ Error: " + err.message);
+    }
+}
+
+// ===== WHATSAPP =====
+function openWhatsApp(phone, name) {
+    let cleanPhone = phone.replace(/\D/g, '');
+    if(!cleanPhone.startsWith('91')) cleanPhone = '91' + cleanPhone;
+
+    const message = encodeURIComponent(
+        `Hi ${name}! 👋\n\n` +
+        `Thank you for booking with *MoveX* 🚛\n\n` +
+        `We have received your transport request and our team is looking for the best truck for you!\n\n` +
+        `⏰ We will call you within *2 hours* with full details.\n\n` +
+        `For any queries, WhatsApp us anytime.\n\n` +
+        `— Team MoveX 🚛\n` +
+        `📞 +91 9571910941\n` +
+        `🌐 www.movex.services`
+    );
+
+    window.open(`https://wa.me/${cleanPhone}?text=${message}`, '_blank');
+}
+</script>
+</body>
+</html>
